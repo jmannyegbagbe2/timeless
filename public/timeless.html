@@ -13,16 +13,18 @@
         }
 
         :root {
-            --black: #0a0a0a;
-            --white: #f9f9f9;
-            --gray-dark: #1a1a1a;
-            --gray-light: #e8e8e8;
-            --gray-medium: #727272;
-            --purple: #9d4edd;
-            --purple-light: #c77dff;
-            --violet: #7c3aed;
-            --cyan: #67e8f9;
-            --rose: #f0abfc;
+            --black: #071110;
+            --white: #f4fbf8;
+            --gray-dark: #172421;
+            --gray-light: #d9e5e1;
+            --gray-medium: #7f9690;
+            --purple: #1dd3b0;
+            --purple-light: #8ee8c7;
+            --violet: #147d71;
+            --cyan: #62e6da;
+            --rose: #d9b56d;
+            --gold: #d9b56d;
+            --green: #79d69b;
         }
 
         body {
@@ -211,48 +213,100 @@
             height: 80%;
             display: grid;
             place-items: center;
-            background: radial-gradient(circle at 30% 25%, #737373 0%, #2b2b2b 42%, var(--black) 78%);
+            background: radial-gradient(circle at 30% 25%, #87968f 0%, #3b4b47 38%, #0b1715 76%);
             border-radius: 50%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset -14px -14px 35px rgba(0, 0, 0, 0.65), 0 0 70px rgba(157, 78, 221, 0.16);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset -14px -14px 35px rgba(0, 0, 0, 0.65), 0 0 70px rgba(29, 211, 176, 0.2);
             animation: sphere-float 6s ease-in-out infinite;
             position: relative;
             z-index: 1;
         }
 
+        .watch-placeholder::before,
+        .watch-placeholder::after {
+            content: '';
+            position: absolute;
+            width: 12%;
+            height: 23%;
+            background: linear-gradient(90deg, #65736f, var(--gold), #4c5b57);
+            border: 1px solid rgba(255, 229, 157, 0.65);
+            border-radius: 0.45rem;
+            box-shadow: 0 5px 12px rgba(0,0,0,.45);
+        }
+
+        .watch-placeholder::before { top: -10%; }
+        .watch-placeholder::after { bottom: -10%; }
+
         .watch-face {
-            width: 62%;
+            width: 69%;
             aspect-ratio: 1;
             display: grid;
             place-items: center;
             position: relative;
-            border: 2px solid rgba(240, 171, 252, 0.75);
+            border: 0.7rem solid #b5c2bc;
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 25%, #2b1742, #100c17 70%);
-            box-shadow: inset 0 0 25px rgba(124, 58, 237, 0.45), 0 0 25px rgba(199, 125, 255, 0.3);
+            background: radial-gradient(circle at 35% 25%, #1e5149, #092521 68%, #06120f 100%);
+            box-shadow: inset 0 0 0 3px rgba(217,181,109,.9), inset 0 0 25px rgba(0,0,0,.9), 0 0 0 0.5rem #273732, 0 0 30px rgba(98,230,218,.32);
             transform: rotate(-8deg);
         }
 
         .watch-face::before {
             content: '12   3   6   9';
             position: absolute;
-            inset: 12%;
+            inset: 10%;
             display: grid;
             place-items: center;
-            color: rgba(240, 171, 252, 0.6);
+            color: rgba(217, 181, 109, 0.85);
             font-size: clamp(0.45rem, 1.4vw, 0.85rem);
             letter-spacing: 0.35em;
             word-spacing: 1.9em;
             text-align: center;
         }
 
+        .watch-face::after {
+            content: '';
+            position: absolute;
+            inset: 7%;
+            border: 1px dashed rgba(121,214,155,.48);
+            border-radius: 50%;
+            animation: dial-spin 24s linear infinite;
+        }
+
+        .spiral {
+            position: absolute;
+            inset: 21%;
+            width: 58%;
+            height: 58%;
+            overflow: visible;
+            z-index: 1;
+            transform: rotate(-16deg);
+        }
+
+        .spiral-path {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 2.6;
+            stroke-linecap: round;
+            stroke-dasharray: 190;
+            stroke-dashoffset: 190;
+            filter: drop-shadow(0 0 4px rgba(98,230,218,.9));
+            animation: draw-spiral 8s ease-in-out infinite alternate;
+        }
+
+        .spiral-number {
+            fill: var(--gold);
+            font: 700 7px Georgia, serif;
+            letter-spacing: .5px;
+            text-anchor: middle;
+        }
+
         .infinity {
-            color: var(--cyan);
+            color: var(--white);
             font-size: clamp(2.5rem, 8vw, 6rem);
             line-height: 1;
             font-family: Georgia, serif;
-            text-shadow: 0 0 12px rgba(103, 232, 249, 0.9), 0 0 30px rgba(103, 232, 249, 0.4);
+            text-shadow: 0 0 12px rgba(98, 230, 218, 0.9), 0 0 30px rgba(98, 230, 218, 0.4);
             animation: glow 3s ease-in-out infinite alternate;
-            z-index: 1;
+            z-index: 2;
         }
 
         .watch-label {
@@ -276,6 +330,15 @@
         @keyframes glow {
             from { opacity: 0.75; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1.04); }
+        }
+
+        @keyframes draw-spiral {
+            0% { stroke-dashoffset: 190; opacity: .35; }
+            45%, 100% { stroke-dashoffset: 0; opacity: 1; }
+        }
+
+        @keyframes dial-spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Section */
@@ -596,10 +659,15 @@
         </div>
         <div class="hero-image" aria-label="A floating watch sphere with an infinity symbol on its face">
             <div class="watch-placeholder">
-                <div class="watch-face">
-                    <span class="infinity" aria-label="Infinity">∞</span>
-                    <span class="watch-label">TIMELESS</span>
-                </div>
+<div class="watch-face">
+                                <svg class="spiral" viewBox="0 0 100 100" role="img" aria-label="A spiral counting from zero to infinity">
+                                    <path class="spiral-path" d="M50 50 C50 44 56 43 59 47 C63 53 57 61 49 61 C36 61 30 50 35 40 C42 25 65 22 78 35 C94 51 86 78 65 88" />
+                                    <text class="spiral-number" x="49" y="47">0</text>
+                                    <text class="spiral-number" x="75" y="32">∞</text>
+                                </svg>
+                                <span class="infinity" aria-label="Infinity">∞</span>
+                                <span class="watch-label">TIMELESS</span>
+                            </div>
             </div>
         </div>
     </section>
