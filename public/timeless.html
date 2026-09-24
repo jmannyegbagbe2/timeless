@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMELESS | Watches Built to Outlive You</title>
+    <meta name="description" content="TIMELESS: Hand-assembled automatic watches built from surgical-grade steel. No trends. No batteries. No shortcuts. Built to last.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #f9f9f9;
+            --gray-dark: #1a1a1a;
+            --gray-light: #e8e8e8;
+            --gray-medium: #727272;
+            --purple: #9d4edd;
+            --purple-light: #c77dff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--gray-light);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--gray-dark);
+            position: sticky;
+            top: 0;
+            background-color: var(--black);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--purple);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            padding: 5rem 5%;
+            min-height: 90vh;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border: 1px solid var(--white);
+            background-color: transparent;
+            color: var(--white);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: var(--purple);
+            border-color: var(--purple);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            border-color: var(--gray-medium);
+            color: var(--gray-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gray-dark) 0%, var(--black) 100%);
+            border-radius: 8px;
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watch-placeholder {
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle at 30% 30%, var(--gray-medium), var(--black));
+            border-radius: 50%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset -5px -5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 5%;
+            border-top: 1px solid var(--gray-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+        }
+
+        /* Manifesto */
+        .manifesto {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .manifesto blockquote {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-light);
+            border-left: 3px solid var(--purple);
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Collections Grid */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .collection-card {
+            border: 1px solid var(--gray-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .collection-card:hover {
+            border-color: var(--purple);
+            background-color: var(--gray-dark);
+        }
+
+        .collection-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-tagline {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .collection-specs {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .collection-link {
+            color: var(--purple);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .collection-link:hover {
+            color: var(--purple-light);
+        }
+
+        /* Craftsmanship */
+        .craftsmanship-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .craft-item {
+            text-align: center;
+        }
+
+        .craft-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--gray-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .craft-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .craft-item p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Story Section */
+        .story {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .story-content blockquote {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--gray-light);
+            border-left: 3px solid var(--purple);
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .story-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .founder-photo {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--gray-medium) 0%, var(--gray-dark) 100%);
+            border-radius: 8px;
+            opacity: 0.7;
+        }
+
+        /* Social Proof */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial {
+            border: 1px solid var(--gray-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            background-color: var(--gray-dark);
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--gray-dark);
+            padding: 3rem 5%;
+            background-color: var(--gray-dark);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-right a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-right a:hover {
+            color: var(--purple);
+        }
+
+        .footer-tagline {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+                min-height: auto;
+            }
+
+            .collections-grid,
+            .craftsmanship-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+            }
+
+            .story-photos {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-right {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">TIMELESS</div>
+        <ul class="nav-links">
+            <li><a href="#shop">SHOP</a></li>
+            <li><a href="#collections">COLLECTIONS</a></li>
+            <li><a href="#story">OUR STORY</a></li>
+            <li><a href="#journal">JOURNAL</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Time is not kept.<br>It is lived.</h1>
+            <p class="hero-subtitle">TIMELESS is a study in permanence. No trends. No seasons. Just watches built to outlive you.</p>
+            <div class="hero-ctas">
+                <button class="btn" onclick="document.getElementById('collections').scrollIntoView({behavior: 'smooth'})">Explore Collection</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('manifesto').scrollIntoView({behavior: 'smooth'})">Our Philosophy</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="watch-placeholder"></div>
+        </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section id="manifesto" class="manifesto">
+        <div class="section-title">Why Timeless</div>
+        <h2 style="text-align: center; margin-bottom: 3rem;">Permanence Over Trends</h2>
+        <blockquote>
+            We live in an era of fast everything. Fast fashion. Fast tech. Fast obsolescence.
+            <br><br>
+            TIMELESS was founded on one refusal: to make disposable things.
+            <br><br>
+            Every case is milled from 316L surgical-grade steel. Every movement is automatic. No batteries. No shortcuts. Powered by motion. Built by hand. Assembled to tolerances measured in microns.
+            <br><br>
+            This is not a smartwatch. It doesn't track you. It doesn't notify you. It tells time. Nothing more. Nothing less.
+            <br><br>
+            That's the point.
+        </blockquote>
+    </section>
+
+    <!-- Collections -->
+    <section id="collections">
+        <div class="section-title">Our Collections</div>
+        <h2 style="text-align: center; margin-bottom: 3rem;">Three Timeless Designs</h2>
+        <div class="collections-grid">
+            <!-- Collection 1 -->
+            <div class="collection-card">
+                <div class="collection-number">01</div>
+                <h3 class="collection-name">ORIGIN</h3>
+                <p class="collection-tagline">The first. And the foundation.</p>
+                <div class="collection-specs">
+                    <strong>39mm case</strong><br>
+                    Sapphire crystal<br>
+                    Miyota 9039 automatic<br>
+                    100m water resistance
+                </div>
+                <div class="collection-price">$420</div>
+                <a href="#" class="collection-link">View Details →</a>
+            </div>
+
+            <!-- Collection 2 -->
+            <div class="collection-card">
+                <div class="collection-number">02</div>
+                <h3 class="collection-name">NOIR</h3>
+                <p class="collection-tagline">All black. No logos on dial.</p>
+                <div class="collection-specs">
+                    <strong>39mm case</strong><br>
+                    PVD coated steel<br>
+                    Japanese automatic<br>
+                    100m water resistance
+                </div>
+                <div class="collection-price">$480</div>
+                <a href="#" class="collection-link">View Details →</a>
+            </div>
+
+            <!-- Collection 3 -->
+            <div class="collection-card">
+                <div class="collection-number">03</div>
+                <h3 class="collection-name">FIELD</h3>
+                <p class="collection-tagline">Built for daily wear. Military spec.</p>
+                <div class="collection-specs">
+                    <strong>38mm case</strong><br>
+                    Canvas strap<br>
+                    Luminous markers<br>
+                    100m water resistance
+                </div>
+                <div class="collection-price">$390</div>
+                <a href="#" class="collection-link">View Details →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship -->
+    <section>
+        <div class="section-title">Craftsmanship</div>
+        <h2 style="text-align: center; margin-bottom: 3rem;">Built Once. Built Right.</h2>
+        <div class="craftsmanship-grid">
+            <div class="craft-item">
+                <div class="craft-icon">⚙️</div>
+                <h3>Movement</h3>
+                <p>Automatic self-winding. 42-hour power reserve. Hacking seconds. No battery ever needed. Motion is your power source.</p>
+            </div>
+            <div class="craft-item">
+                <div class="craft-icon">💎</div>
+                <h3>Materials</h3>
+                <p>316L steel case. Double-domed sapphire crystal with AR coating. Scratch-proof. Water resistant to 100m. Built for life.</p>
+            </div>
+            <div class="craft-item">
+                <div class="craft-icon">🔧</div>
+                <h3>Assembly</h3>
+                <p>Assembled and regulated in small batches. Each watch tested for 5 days before shipping. Individually numbered.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story">
+        <div class="story">
+            <div class="story-content">
+                <h2>A Small Company on Purpose</h2>
+                <blockquote>
+                    TIMELESS was started in 2024 by two friends tired of brands charging $2,000 for a $200 watch.
+                    <br><br>
+                    We cut out the middleman. No retail markup. No celebrity endorsements. No boutique in Geneva.
+                    <br><br>
+                    Just direct to you, from our workshop. That's why we can offer a watch that will last 30 years for under $500.
+                    <br><br>
+                    We are not a luxury brand. We are a permanence brand.
+                </blockquote>
+            </div>
+            <div class="story-photos">
+                <div class="founder-photo"></div>
+                <div class="founder-photo"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section id="journal">
+        <div class="section-title">What People Say</div>
+        <h2 style="text-align: center; margin-bottom: 3rem;">Real Voices</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"The only watch I wear. Every day for 2 years. Still perfect."</p>
+                <div class="testimonial-author">— James K.</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"Finally a watch that doesn't try to be a computer."</p>
+                <div class="testimonial-author">— Amina L.</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"My dad will get this when I'm done with it."</p>
+                <div class="testimonial-author">— David R.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="logo">TIMELESS © 2026</div>
+                <p class="footer-tagline">permanence over trends</p>
+            </div>
+            <ul class="footer-right">
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Warranty</a></li>
+                <li><a href="#">Shipping & Returns</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll behavior for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
