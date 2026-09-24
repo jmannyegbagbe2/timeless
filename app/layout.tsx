@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
+  title: "TIMELESS | Watches Built to Outlive You",
+  description:
+    "TIMELESS hand-assembled automatic watches built from surgical-grade steel. No trends. No batteries. No shortcuts.",
   generator: "v0.app",
 }
 
