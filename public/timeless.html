@@ -20,6 +20,9 @@
             --gray-medium: #727272;
             --purple: #9d4edd;
             --purple-light: #c77dff;
+            --violet: #7c3aed;
+            --cyan: #67e8f9;
+            --rose: #f0abfc;
         }
 
         body {
@@ -174,19 +177,105 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--gray-dark) 0%, var(--black) 100%);
+            background:
+                radial-gradient(circle at 70% 18%, rgba(199, 125, 255, 0.2), transparent 28%),
+                radial-gradient(circle at 20% 80%, rgba(103, 232, 249, 0.14), transparent 34%),
+                linear-gradient(135deg, var(--gray-dark) 0%, var(--black) 100%);
             border-radius: 8px;
             aspect-ratio: 1;
             position: relative;
             overflow: hidden;
         }
 
+        .hero-image::before,
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 18rem;
+            height: 18rem;
+            border: 1px solid rgba(199, 125, 255, 0.2);
+            border-radius: 50%;
+            animation: orbit 14s linear infinite;
+        }
+
+        .hero-image::after {
+            width: 28rem;
+            height: 28rem;
+            border-color: rgba(103, 232, 249, 0.12);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+
         .watch-placeholder {
             width: 80%;
             height: 80%;
-            background: radial-gradient(circle at 30% 30%, var(--gray-medium), var(--black));
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 30% 25%, #737373 0%, #2b2b2b 42%, var(--black) 78%);
             border-radius: 50%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset -5px -5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset -14px -14px 35px rgba(0, 0, 0, 0.65), 0 0 70px rgba(157, 78, 221, 0.16);
+            animation: sphere-float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .watch-face {
+            width: 62%;
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+            position: relative;
+            border: 2px solid rgba(240, 171, 252, 0.75);
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 25%, #2b1742, #100c17 70%);
+            box-shadow: inset 0 0 25px rgba(124, 58, 237, 0.45), 0 0 25px rgba(199, 125, 255, 0.3);
+            transform: rotate(-8deg);
+        }
+
+        .watch-face::before {
+            content: '12   3   6   9';
+            position: absolute;
+            inset: 12%;
+            display: grid;
+            place-items: center;
+            color: rgba(240, 171, 252, 0.6);
+            font-size: clamp(0.45rem, 1.4vw, 0.85rem);
+            letter-spacing: 0.35em;
+            word-spacing: 1.9em;
+            text-align: center;
+        }
+
+        .infinity {
+            color: var(--cyan);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1;
+            font-family: Georgia, serif;
+            text-shadow: 0 0 12px rgba(103, 232, 249, 0.9), 0 0 30px rgba(103, 232, 249, 0.4);
+            animation: glow 3s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        .watch-label {
+            position: absolute;
+            bottom: 16%;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.45rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        @keyframes sphere-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        @keyframes orbit {
+            to { transform: rotate(360deg) translateX(18px) rotate(-360deg); }
+        }
+
+        @keyframes glow {
+            from { opacity: 0.75; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1.04); }
         }
 
         /* Section */
@@ -505,8 +594,13 @@
                 <button class="btn btn-secondary" onclick="document.getElementById('manifesto').scrollIntoView({behavior: 'smooth'})">Our Philosophy</button>
             </div>
         </div>
-        <div class="hero-image">
-            <div class="watch-placeholder"></div>
+        <div class="hero-image" aria-label="A floating watch sphere with an infinity symbol on its face">
+            <div class="watch-placeholder">
+                <div class="watch-face">
+                    <span class="infinity" aria-label="Infinity">∞</span>
+                    <span class="watch-label">TIMELESS</span>
+                </div>
+            </div>
         </div>
     </section>
 
